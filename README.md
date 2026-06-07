@@ -84,6 +84,7 @@ tar -xvf STA326_project_final_models.tar -C ~/STA326_project_final
 
 解压后，模型文件目录示例如下：
 
+```
 STA326_project_final/
 ├── external/
 │   └── teammate_repo/
@@ -93,6 +94,7 @@ STA326_project_final/
 │   │   └── best_head_base.pth
 │   └── convnextv2_large/
 │       └── best_head_large.pth
+```
 
 请保持模型文件的原始目录结构，不要手动修改模型文件名或移动模型文件位置，否则可能导致推理脚本无法正确读取权重。
 
