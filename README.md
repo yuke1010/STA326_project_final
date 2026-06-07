@@ -58,6 +58,42 @@ data/
 * `test/` 用于存放测试集图像；
 * `sample_submission.csv` 为课程提供的提交文件模板。
 
+## 模型下载
+
+本项目最终复现实验结果所需的模型权重文件较大，因此未直接上传至 GitHub。请通过以下百度网盘链接下载模型压缩包。
+
+模型包名称：STA326_project_final_models.tar
+百度网盘链接：点此下载
+提取码：yxup
+
+下载完成后，请将模型压缩包解压到本项目根目录下。
+
+示例命令如下：
+
+### 假设模型包下载到了 ~/Downloads 目录
+cd ~/Downloads
+
+### 将模型文件解压到项目根目录
+tar -xvf STA326_project_final_models.tar -C /your/project/path
+
+其中 /your/project/path 请替换为你本地的项目路径，例如：
+
+tar -xvf STA326_project_final_models.tar -C ~/STA326_project_final
+
+解压后，模型文件目录示例如下：
+
+STA326_project_final/
+├── external/
+│   └── teammate_repo/
+│       └── reproduce_original_dinov3_e20_best.pth
+├── experiments/
+│   ├── convnextv2_base/
+│   │   └── best_head_base.pth
+│   └── convnextv2_large/
+│       └── best_head_large.pth
+
+请保持模型文件的原始目录结构，不要手动修改模型文件名或移动模型文件位置，否则可能导致推理脚本无法正确读取权重。
+
 ## 实验复现流程
 
 ### 1. DINOV3 模型训练
