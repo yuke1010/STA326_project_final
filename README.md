@@ -73,14 +73,20 @@ data/
 示例命令如下：
 
 ### 假设模型包下载到了 ~/Downloads 目录
+```
 cd ~/Downloads
+```
 
 ### 将模型文件解压到项目根目录
+```
 tar -xvf STA326_project_final_models.tar -C /your/project/path
+```
 
 其中 /your/project/path 请替换为你本地的项目路径，例如：
 
+```
 tar -xvf STA326_project_final_models.tar -C ~/STA326_project_final
+```
 
 解压后，模型文件目录示例如下：
 
