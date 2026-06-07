@@ -1,14 +1,14 @@
 # STA326_project_final
 
-## Project Overview
+## 仓库概览
 
-This repository contains the final project for STA326. The project implements an image classification pipeline based on multiple models, including **DINOV3**, **ConvNeXtV2**, and a **Qwen VLM Teacher** model. The final submission is produced through probability-level model blending.
+本仓库为 STA326 课程最终项目代码仓库，包含基于 **DINOV3**、**ConvNeXtV2** 与 **Qwen VLM Teacher** 的图像分类实验流程。项目主要包括模型训练、测试集推理、测试概率生成以及最终融合提交文件生成。
 
-The repository includes training scripts, inference scripts, model blending scripts, final prediction files, and the final submission file. The purpose of this README is to explain how to reproduce the final test results.
+本仓库保留了最终实验版本所需的核心代码、最终概率文件、融合脚本和提交文件，便于复现实验结果。
 
-## Repository Structure
+## 目录结构
 
-```text
+```
 STA326_project_final/
 ├── experiments/
 │   └── v40_v13_qwen_q010_w025/
@@ -25,131 +25,137 @@ STA326_project_final/
 └── README.md
 ```
 
-## Environment Requirements
+## 环境要求
 
-The recommended Python version is:
+建议使用以下 Python 版本：
 
-```bash
+```
 Python 3.11+
 ```
 
-Install the required packages:
+安装主要依赖：
 
-```bash
+```
 pip install torch torchvision timm pandas numpy scikit-learn tqdm opencv-python einops
 ```
 
-If GPU acceleration is available, please make sure that CUDA and the corresponding PyTorch version are correctly installed.
+如需使用 GPU 训练，请确保 CUDA 环境以及对应版本的 PyTorch 已正确安装。
 
-## Data Preparation
+## 数据准备
 
-Please place the dataset provided by the course into the `data/` directory.
+请将课程提供的数据集放置在 `data/` 目录下，推荐目录结构如下：
 
-The expected structure is:
-
-```text
+```
 data/
 ├── train/
 ├── test/
 └── sample_submission.csv
 ```
 
-The `train/` directory should contain the training images, and the `test/` directory should contain the test images.
+其中：
 
-## Reproducing the Final Result
+* `train/` 用于存放训练集图像；
+* `test/` 用于存放测试集图像；
+* `sample_submission.csv` 为课程提供的提交文件模板。
 
-The final submission file is located at:
+## 实验复现流程
 
-```text
-experiments/v40_v13_qwen_q010_w025/submission.csv
+### 1. DINOV3 模型训练
+
+运行 DINOV3 训练脚本：
+
 ```
-
-To reproduce the final result, follow the steps below.
-
-### Step 1: Train DINOV3 Model
-
-Run the DINOV3 training script:
-
-```bash
 python hhp_main.py
 ```
 
-This script trains the DINOV3-based image classification model.
+该脚本用于训练基于 DINOV3 的图像分类模型。
 
-### Step 2: Train ConvNeXtV2 Model
+### 2. ConvNeXtV2 模型训练
 
-Run the ConvNeXtV2 frozen training script:
+运行 ConvNeXtV2 冻结训练脚本：
 
-```bash
+```
 python train_timm_frozen.py
 ```
 
-This script trains the ConvNeXtV2-based classifier with frozen backbone settings.
+该脚本用于训练基于 ConvNeXtV2 的分类模型。
 
-### Step 3: Run Qwen VLM Teacher Inference
+### 3. Qwen VLM Teacher 推理
 
-Run the Qwen VLM Teacher inference script:
+运行 Qwen VLM Teacher 推理脚本：
 
-```bash
+```
 python run_vlm_thinking_noreason.py
 ```
 
-This script generates teacher-model predictions for the test set.
+该脚本用于生成 Qwen VLM Teacher 在测试集上的预测结果。
 
-### Step 4: Generate DINOV3 Test Probabilities
+### 4. 生成 DINOV3 测试概率
 
-Run the DINOV3 test-time augmentation inference script:
+运行 DINOV3 测试时增强推理脚本：
 
-```bash
+```
 python infer_tta_dinov3.py
 ```
 
-The generated test probability file is saved as:
+生成的测试概率文件保存路径为：
 
-```text
+```
 experiments/v40_v13_qwen_q010_w025/test_prob.csv
 ```
 
-### Step 5: Run Final Model Blending
+### 5. 最终模型融合
 
-Run the final blending script:
+运行最终融合脚本：
 
-```bash
+```
 python external/teammate_repo/final_v13_q010_w025_blend.py
 ```
 
-The final blended submission file will be saved as:
+融合后生成最终提交文件：
 
-```text
+```
 experiments/v40_v13_qwen_q010_w025/submission.csv
 ```
 
-## Final Output
+## 最终结果文件
 
-The final submission file used for evaluation is:
+最终提交文件为：
 
-```text
+```
 experiments/v40_v13_qwen_q010_w025/submission.csv
 ```
 
-The corresponding test probability file is:
+测试概率文件为：
 
-```text
+```
 experiments/v40_v13_qwen_q010_w025/test_prob.csv
 ```
 
-## Notes
+## 文件说明
 
-* `submission.csv` is the final file for submission.
-* `test_prob.csv` stores the model probability outputs used for final blending.
-* `final_v13_q010_w025_blend.py` is the final ensemble script.
-* `final_inventory.txt` records the important files included in the final version.
-* To reproduce the result, please make sure that the dataset path and output path are consistent with the repository structure above.
+* `hhp_main.py`：DINOV3 模型训练脚本。
+* `infer_tta_dinov3.py`：DINOV3 测试集推理与测试时增强脚本。
+* `train_timm_frozen.py`：ConvNeXtV2 冻结训练脚本。
+* `run_vlm_thinking_noreason.py`：Qwen VLM Teacher 推理脚本。
+* `external/teammate_repo/final_v13_q010_w025_blend.py`：最终融合脚本。
+* `experiments/v40_v13_qwen_q010_w025/test_prob.csv`：测试集概率输出文件。
+* `experiments/v40_v13_qwen_q010_w025/submission.csv`：最终提交文件。
+* `final_inventory.txt`：最终实验文件清单。
 
-## Author
+## 注意事项
+
+* 运行代码前，请确认数据路径与脚本中的路径设置一致。
+* 如更换数据目录，需要同步修改对应脚本中的输入路径。
+* `submission.csv` 是最终用于提交的文件。
+* `test_prob.csv` 是最终融合所需的测试概率文件。
+* 为保证实验可复现，请勿随意删除 `experiments/v40_v13_qwen_q010_w025/` 目录下的文件。
+* 如需重新训练模型，请确保 GPU、依赖库和数据集均已正确配置。
+
+## 作者
 
 Yuke1010
 
-## Repository Link
+## 仓库链接
 
 https://github.com/yuke1010/STA326_project_final
