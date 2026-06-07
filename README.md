@@ -124,7 +124,7 @@ python train_timm_frozen.py
 python run_vlm_thinking_noreason.py
 ```
 
-该脚本用于生成 Qwen VLM Teacher 在测试集上的预测结果。
+该脚本用于生成 Qwen VLM Teacher 在测试集上的预测结果。注意：默认使用硅基流动 API ，需要你自行配置 key 或者改脚本调用其他 API
 
 ### 4. 生成 DINOV3 测试概率
 
