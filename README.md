@@ -63,7 +63,7 @@ data/
 本项目最终复现实验结果所需的模型权重文件较大，因此未直接上传至 GitHub。请通过以下百度网盘链接下载模型压缩包。
 
 模型包名称：STA326_project_final_models.tar
-百度网盘链接：点此下载
+百度网盘链接：[点此下载](https://pan.baidu.com/s/1AIyY-OXFXy9IUFsNYDTmNQ?pwd=yxup)
 提取码：yxup
 
 下载完成后，请将模型压缩包解压到本项目根目录下。
