@@ -12,16 +12,18 @@
 STA326_project_final/
 ├── experiments/
 │   └── v40_v13_qwen_q010_w025/
-│       ├── submission_v13_blend_d080_b015_l005.csv
-│       └── v07_original_dinov3_tta_test_prob.csv
-│       └── v10_convnextv2_base_frozen_tta_test_prob.csv
-│       └── v12_convnextv2_large_frozen_tta_test_prob.csv
+│   │   ├── submission.csv
+│   │   └── test_prob.csv
+│   ├── submission_v13_blend_d080_b015_l005.csv
+│   ├── v07_original_dinov3_tta_test_prob.csv
+│   ├── v10_convnextv2_base_frozen_tta_test_prob.csv
+│   └── v12_convnextv2_large_frozen_tta_test_prob.csv
 ├── external/
 │   └── teammate_repo/
-│       └── final_v13_q010_w025_blend.py
-│       └── hhp_main.py
-│       └── infer_tta_dinov3.py
-│       └── run_vlm_thinking_noreason.py
+│       ├── final_v13_q010_w025_blend.py
+│       ├── hhp_main.py
+│       ├── infer_tta_dinov3.py
+│       ├── run_vlm_thinking_noreason.py
 │       └── train_timm_frozen.py
 ├── final_inventory.txt
 └── README.md
