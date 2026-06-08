@@ -118,15 +118,49 @@ python hhp_main.py
 
 该脚本用于训练基于 DINOV3 的图像分类模型。
 
+
 ### 2. ConvNeXtV2 模型训练
 
-运行 ConvNeXtV2 冻结训练脚本：
+#### 2.1 训练 Base 模型
+运行以下命令训练 ConvNeXtV2 Base：
 
-```
-python train_timm_frozen.py
+```bash
+python train_timm_frozen.py \
+  --data_path "/data/final project/data/raw" \
+  --output_root "/data/final project/experiments" \
+  --model_name convnextv2_base \
+  --img_size 384 \
+  --epochs 20 \
+  --batch_size 16 \
+  --test_bs 16 \
+  --num_workers 4 \
+  --lr 3e-4 \
+  --weight_decay 1e-2 \
+  --patience 8 \
+  --seed 35 \
+  --exp_name v10_convnextv2_base_frozen_tta
 ```
 
-该脚本用于训练基于 ConvNeXtV2 的分类模型。
+#### 2.2 训练 Large 模型
+
+运行以下命令训练 ConvNeXtV2 Large：
+
+```bash
+python train_timm_frozen.py \
+  --data_path "/data/final project/data/raw" \
+  --output_root "/data/final project/experiments" \
+  --model_name convnextv2_large \
+  --img_size 384 \
+  --epochs 20 \
+  --batch_size 8 \
+  --test_bs 8 \
+  --num_workers 4 \
+  --lr 3e-4 \
+  --weight_decay 1e-2 \
+  --patience 8 \
+  --seed 35 \
+  --exp_name v12_convnextv2_large_frozen_tta
+```
 
 ### 3. Qwen VLM Teacher 推理
 
