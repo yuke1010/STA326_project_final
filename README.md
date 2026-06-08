@@ -43,7 +43,7 @@ Python 3.11+
 pip install torch torchvision timm pandas numpy scikit-learn tqdm opencv-python einops
 ```
 
-如需使用 GPU 训练，请确保 CUDA 环境以及对应版本的 PyTorch 已正确安装。
+使用 GPU 推理或训练，请确保已正确安装 CUDA 与对应版本 PyTorch。
 
 ## 数据准备
 
@@ -113,7 +113,16 @@ STA326_project_final/
 运行 DINOV3 训练脚本：
 
 ```
-python hhp_main.py
+python hhp_main.py \
+  --data_path "/data/final project/data/raw" \
+  --model dinov3 \
+  --epochs 20 \
+  --batch_size 16 \
+  --test_bs 16 \
+  --num_workers 4 \
+  --learning_rate 4e-5 \
+  --decay 2e-2 \
+  --exp_name reproduce_original_dinov3_e20
 ```
 
 该脚本用于训练基于 DINOV3 的图像分类模型。
@@ -170,7 +179,16 @@ python train_timm_frozen.py \
 python run_vlm_thinking_noreason.py
 ```
 
-该脚本用于生成 Qwen VLM Teacher 在测试集上的预测结果。注意：默认使用硅基流动 API ，需要你自行配置 key 或者改脚本调用其他 API
+该脚本用于生成 Qwen VLM Teacher 在测试集上的预测结果。
+
+⚠️ 注意：
+- 本实验使用的是“硅基流动”服务（SiliconFlow）的 Qwen API。
+- 若其他人复现，需要在脚本开头或配置文件中设置自己的 API Key：
+```python
+SILICONFLOW_API_KEY = "YOUR_OWN_API_KEY"
+```
+- 或者修改脚本调用其他可用的 VLM API。
+- 确保网络可访问该 API 服务，才能生成预测结果。
 
 ### 4. 生成 DINOV3 测试概率
 
